@@ -7,13 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DF0B29DF23F0E49C000C3721 /* Levels.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0B29DE23F0E49C000C3721 /* Levels.swift */; };
+		DF0B29E123F0E4B9000C3721 /* TimelineSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0B29E023F0E4B9000C3721 /* TimelineSprite.swift */; };
+		DF0B29E323F0E4D1000C3721 /* VideoInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0B29E223F0E4D1000C3721 /* VideoInfo.swift */; };
+		DF0B29E723F0EA80000C3721 /* VideoInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0B29E623F0EA80000C3721 /* VideoInfoViewController.swift */; };
 		DF5FD0FF23F08B53005E35C6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5FD0FE23F08B53005E35C6 /* AppDelegate.swift */; };
-		DF5FD10123F08B53005E35C6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5FD10023F08B53005E35C6 /* ViewController.swift */; };
 		DF5FD10423F08B53005E35C6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF5FD10223F08B53005E35C6 /* Main.storyboard */; };
 		DF5FD10623F08B54005E35C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF5FD10523F08B54005E35C6 /* Assets.xcassets */; };
 		DF5FD10923F08B54005E35C6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF5FD10723F08B54005E35C6 /* LaunchScreen.storyboard */; };
 		DF5FD11423F08B54005E35C6 /* HydravionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5FD11323F08B54005E35C6 /* HydravionTests.swift */; };
 		DF5FD11F23F08B54005E35C6 /* HydravionUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5FD11E23F08B54005E35C6 /* HydravionUITests.swift */; };
+		DF5FD12D23F08B91005E35C6 /* Subscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5FD12C23F08B91005E35C6 /* Subscription.swift */; };
+		DF5FD12F23F08BB8005E35C6 /* Plan.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5FD12E23F08BB8005E35C6 /* Plan.swift */; };
+		DF5FD13123F08BD5005E35C6 /* ChildImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5FD13023F08BD5005E35C6 /* ChildImages.swift */; };
+		DF5FD13323F08BF9005E35C6 /* Thumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5FD13223F08BF9005E35C6 /* Thumbnail.swift */; };
+		DF5FD13623F08C3C005E35C6 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5FD13523F08C3C005E35C6 /* Video.swift */; };
+		DF5FD13823F08C86005E35C6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5FD13723F08C86005E35C6 /* LoginViewController.swift */; };
+		DF5FD13A23F08CA7005E35C6 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5FD13923F08CA7005E35C6 /* MainViewController.swift */; };
+		DF5FD13C23F096A4005E35C6 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5FD13B23F096A4005E35C6 /* NavigationController.swift */; };
+		DF5FD13E23F0A3E0005E35C6 /* TwoFAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5FD13D23F0A3E0005E35C6 /* TwoFAViewController.swift */; };
+		DF5FD14023F0AC8D005E35C6 /* VideoSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5FD13F23F0AC8D005E35C6 /* VideoSelectionViewController.swift */; };
+		DF5FD14623F0BA34005E35C6 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5FD14523F0BA34005E35C6 /* CollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,9 +48,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DF0B29DE23F0E49C000C3721 /* Levels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Levels.swift; sourceTree = "<group>"; };
+		DF0B29E023F0E4B9000C3721 /* TimelineSprite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineSprite.swift; sourceTree = "<group>"; };
+		DF0B29E223F0E4D1000C3721 /* VideoInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoInfo.swift; sourceTree = "<group>"; };
+		DF0B29E623F0EA80000C3721 /* VideoInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoInfoViewController.swift; sourceTree = "<group>"; };
 		DF5FD0FB23F08B53005E35C6 /* Hydravion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hydravion.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF5FD0FE23F08B53005E35C6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		DF5FD10023F08B53005E35C6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		DF5FD10323F08B53005E35C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DF5FD10523F08B54005E35C6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DF5FD10823F08B54005E35C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +64,17 @@
 		DF5FD11A23F08B54005E35C6 /* HydravionUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HydravionUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF5FD11E23F08B54005E35C6 /* HydravionUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HydravionUITests.swift; sourceTree = "<group>"; };
 		DF5FD12023F08B54005E35C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DF5FD12C23F08B91005E35C6 /* Subscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subscription.swift; sourceTree = "<group>"; };
+		DF5FD12E23F08BB8005E35C6 /* Plan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plan.swift; sourceTree = "<group>"; };
+		DF5FD13023F08BD5005E35C6 /* ChildImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildImages.swift; sourceTree = "<group>"; };
+		DF5FD13223F08BF9005E35C6 /* Thumbnail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thumbnail.swift; sourceTree = "<group>"; };
+		DF5FD13523F08C3C005E35C6 /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
+		DF5FD13723F08C86005E35C6 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		DF5FD13923F08CA7005E35C6 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		DF5FD13B23F096A4005E35C6 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
+		DF5FD13D23F0A3E0005E35C6 /* TwoFAViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoFAViewController.swift; sourceTree = "<group>"; };
+		DF5FD13F23F0AC8D005E35C6 /* VideoSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoSelectionViewController.swift; sourceTree = "<group>"; };
+		DF5FD14523F0BA34005E35C6 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,11 +126,25 @@
 			isa = PBXGroup;
 			children = (
 				DF5FD0FE23F08B53005E35C6 /* AppDelegate.swift */,
-				DF5FD10023F08B53005E35C6 /* ViewController.swift */,
 				DF5FD10223F08B53005E35C6 /* Main.storyboard */,
 				DF5FD10523F08B54005E35C6 /* Assets.xcassets */,
 				DF5FD10723F08B54005E35C6 /* LaunchScreen.storyboard */,
 				DF5FD10A23F08B54005E35C6 /* Info.plist */,
+				DF5FD12C23F08B91005E35C6 /* Subscription.swift */,
+				DF5FD12E23F08BB8005E35C6 /* Plan.swift */,
+				DF5FD13023F08BD5005E35C6 /* ChildImages.swift */,
+				DF5FD13223F08BF9005E35C6 /* Thumbnail.swift */,
+				DF5FD13523F08C3C005E35C6 /* Video.swift */,
+				DF0B29DE23F0E49C000C3721 /* Levels.swift */,
+				DF0B29E223F0E4D1000C3721 /* VideoInfo.swift */,
+				DF0B29E023F0E4B9000C3721 /* TimelineSprite.swift */,
+				DF5FD13B23F096A4005E35C6 /* NavigationController.swift */,
+				DF5FD13723F08C86005E35C6 /* LoginViewController.swift */,
+				DF5FD13D23F0A3E0005E35C6 /* TwoFAViewController.swift */,
+				DF5FD13923F08CA7005E35C6 /* MainViewController.swift */,
+				DF5FD14523F0BA34005E35C6 /* CollectionViewCell.swift */,
+				DF5FD13F23F0AC8D005E35C6 /* VideoSelectionViewController.swift */,
+				DF0B29E623F0EA80000C3721 /* VideoInfoViewController.swift */,
 			);
 			path = Hydravion;
 			sourceTree = "<group>";
@@ -256,8 +298,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DF5FD10123F08B53005E35C6 /* ViewController.swift in Sources */,
+				DF5FD12F23F08BB8005E35C6 /* Plan.swift in Sources */,
+				DF5FD12D23F08B91005E35C6 /* Subscription.swift in Sources */,
+				DF5FD14623F0BA34005E35C6 /* CollectionViewCell.swift in Sources */,
+				DF5FD13323F08BF9005E35C6 /* Thumbnail.swift in Sources */,
+				DF0B29DF23F0E49C000C3721 /* Levels.swift in Sources */,
+				DF5FD13123F08BD5005E35C6 /* ChildImages.swift in Sources */,
+				DF5FD13823F08C86005E35C6 /* LoginViewController.swift in Sources */,
+				DF5FD13A23F08CA7005E35C6 /* MainViewController.swift in Sources */,
+				DF0B29E723F0EA80000C3721 /* VideoInfoViewController.swift in Sources */,
+				DF5FD14023F0AC8D005E35C6 /* VideoSelectionViewController.swift in Sources */,
+				DF5FD13C23F096A4005E35C6 /* NavigationController.swift in Sources */,
+				DF5FD13623F08C3C005E35C6 /* Video.swift in Sources */,
+				DF5FD13E23F0A3E0005E35C6 /* TwoFAViewController.swift in Sources */,
+				DF0B29E323F0E4D1000C3721 /* VideoInfo.swift in Sources */,
 				DF5FD0FF23F08B53005E35C6 /* AppDelegate.swift in Sources */,
+				DF0B29E123F0E4B9000C3721 /* TimelineSprite.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -440,6 +496,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 13.2;
 			};
 			name = Debug;
 		};
@@ -457,6 +514,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 13.2;
 			};
 			name = Release;
 		};
