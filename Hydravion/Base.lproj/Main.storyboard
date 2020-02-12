@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="15705" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="FQg-fb-ira">
+<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="15705" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ozt-A6-v0c">
     <device id="appleTV" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
@@ -10,12 +10,12 @@
         <!--Main View Controller-->
         <scene sceneID="RfP-kn-Unx">
             <objects>
-                <viewController id="M3r-Z6-wt4" customClass="MainViewController" customModule="Hydravion" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="mainViewController" id="M3r-Z6-wt4" customClass="MainViewController" customModule="Hydravion" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="wNW-8u-fDH"/>
                         <viewControllerLayoutGuide type="bottom" id="NfG-oz-VZn"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="lUV-c9-xgC">
+                    <view key="view" contentMode="scaleToFill" id="lUV-c9-xgC" customClass="Main">
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -31,18 +31,33 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HBL-rJ-LTX">
+                                <rect key="frame" x="1749" y="68" width="65" height="64"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="playpause.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="QNb-ft-wCT">
+                                        <rect key="frame" x="7" y="7" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="0qR-mT-7Z3"/>
                     </view>
                     <navigationItem key="navigationItem" id="y5L-zm-CJT"/>
                     <connections>
+                        <outlet property="playButtonBackground" destination="HBL-rJ-LTX" id="CMX-I1-nHm"/>
                         <outlet property="tableView" destination="Pmc-mH-lw9" id="a6D-zX-7gP"/>
                         <segue destination="rJu-Hr-Bmh" kind="show" identifier="creatorSelectedSegue" id="Q2P-Sc-gHh"/>
+                        <segue destination="C1F-QN-z3M" kind="unwind" identifier="returnToStepOne" unwindAction="returnToStepOneWithSegue:" id="e8V-Mz-j0o"/>
+                        <segue destination="wvo-uW-CBZ" kind="show" identifier="loginSegue" id="UnT-6S-XGA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xa7-vD-7yS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="C1F-QN-z3M" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="334" y="1609"/>
+            <point key="canvasLocation" x="360" y="1609"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="lrQ-to-TNN">
@@ -92,13 +107,15 @@
                         <outlet property="failed" destination="jQv-tC-Fnk" id="7S0-mp-KWk"/>
                         <outlet property="password" destination="X3b-JG-EGc" id="9lL-TX-wna"/>
                         <outlet property="username" destination="YqD-Zz-0vb" id="HDS-65-VTN"/>
-                        <segue destination="M3r-Z6-wt4" kind="show" identifier="loggedInSegue" id="lDp-Y3-uNH"/>
                         <segue destination="82p-Bm-NQ8" kind="show" identifier="twoFASegue" id="NMd-NQ-MUh"/>
+                        <segue destination="WxG-Gx-IdC" kind="unwind" identifier="returnToStepOne" unwindAction="returnToStepOneWithSegue:" id="b2Z-lb-AIT"/>
+                        <segue destination="M3r-Z6-wt4" kind="show" identifier="loggedInSegue" id="4ae-x6-EB3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OHX-19-JLB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="WxG-Gx-IdC" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-885" y="-335"/>
+            <point key="canvasLocation" x="-732" y="-561"/>
         </scene>
         <!--TwoFA View Controller-->
         <scene sceneID="9BM-rU-mEF">
@@ -141,12 +158,14 @@
                     <connections>
                         <outlet property="incorrectCode" destination="APz-Ae-0is" id="Hac-gv-kee"/>
                         <outlet property="twoFACode" destination="bYL-Yq-IoR" id="DGL-0M-HEG"/>
-                        <segue destination="M3r-Z6-wt4" kind="show" identifier="loggedInSegue" id="rdl-Fd-kc5"/>
+                        <segue destination="k7a-f6-cPm" kind="unwind" identifier="returnToStepOne" unwindAction="returnToStepOneWithSegue:" id="wTr-S2-lm7"/>
+                        <segue destination="M3r-Z6-wt4" kind="show" identifier="loggedInSegue" id="wZj-3O-ovK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YoW-19-gpa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="k7a-f6-cPm" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1583" y="-335"/>
+            <point key="canvasLocation" x="1736" y="-561"/>
         </scene>
         <!--Video Selection View Controller-->
         <scene sceneID="5Vw-d4-6J2">
@@ -229,19 +248,33 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XAj-d6-n6K">
+                                <rect key="frame" x="1749" y="68" width="65" height="64"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="playpause.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="rid-lW-H4Z">
+                                        <rect key="frame" x="7" y="7" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="w8s-cq-BWA"/>
                     </view>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" id="S3p-j8-PbQ"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="creator" destination="9NH-0p-UzD" id="7Wu-SN-w3m"/>
+                        <outlet property="playButtonView" destination="XAj-d6-n6K" id="yQE-cm-s9N"/>
                         <outlet property="videoCollection" destination="vHs-XN-bgy" id="7d5-5F-QuR"/>
                         <segue destination="iOq-Pk-Rzg" kind="show" identifier="videoInfoSegue" id="Q4W-C7-gVM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="inh-CF-4e3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3062" y="1609"/>
+            <point key="canvasLocation" x="3003" y="1609"/>
         </scene>
         <!--Video Info View Controller-->
         <scene sceneID="G4Q-Jb-jf0">
@@ -291,29 +324,33 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e5a-fH-eFq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5796" y="1609"/>
+            <point key="canvasLocation" x="5737" y="1609"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="CcY-kI-HkH">
+        <scene sceneID="rQN-u5-PaW">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="FQg-fb-ira" customClass="NavigationController" customModule="Hydravion" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ozt-A6-v0c" customClass="NavigationController" customModule="Hydravion" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="4js-1z-UeL">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Pao-KU-3MR">
                         <rect key="frame" x="0.0" y="60" width="1920" height="145"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="wvo-uW-CBZ" kind="show" identifier="loginSegue" id="X9k-Cm-M7C"/>
-                        <segue destination="M3r-Z6-wt4" kind="show" identifier="alreadyLoggedInSegue" id="6sK-Yp-3cm"/>
+                        <segue destination="wvo-uW-CBZ" kind="show" identifier="loginSegue" id="vh5-X1-ecH"/>
+                        <segue destination="M3r-Z6-wt4" kind="show" identifier="alreadyLoggedInSegue" id="h33-V9-7H4"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="k2m-tY-GOS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lEn-QA-xJ5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3343" y="1609"/>
+            <point key="canvasLocation" x="-3364" y="1609"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="playpause.fill" catalog="system" width="32" height="18"/>
+    </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="lDp-Y3-uNH"/>
+        <segue reference="UnT-6S-XGA"/>
+        <segue reference="wZj-3O-ovK"/>
     </inferredMetricsTieBreakers>
 </document>

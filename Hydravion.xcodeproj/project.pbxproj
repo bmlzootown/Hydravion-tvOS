@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -28,6 +28,15 @@
 		DF5FD13E23F0A3E0005E35C6 /* TwoFAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5FD13D23F0A3E0005E35C6 /* TwoFAViewController.swift */; };
 		DF5FD14023F0AC8D005E35C6 /* VideoSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5FD13F23F0AC8D005E35C6 /* VideoSelectionViewController.swift */; };
 		DF5FD14623F0BA34005E35C6 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5FD14523F0BA34005E35C6 /* CollectionViewCell.swift */; };
+		DFE4C6A823F2009C00C6501D /* CreatorInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE4C6A723F2009C00C6501D /* CreatorInfo.swift */; };
+		DFE4C6AA23F200DC00C6501D /* LiveStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE4C6A923F200DC00C6501D /* LiveStream.swift */; };
+		DFE4C6AC23F200F900C6501D /* Offline.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE4C6AB23F200F900C6501D /* Offline.swift */; };
+		DFE4C6AE23F2010C00C6501D /* Cover.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE4C6AD23F2010C00C6501D /* Cover.swift */; };
+		DFE4C6B023F2012000C6501D /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE4C6AF23F2012000C6501D /* Icon.swift */; };
+		DFE4C6B223F2033F00C6501D /* LiveCDN.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE4C6B123F2033F00C6501D /* LiveCDN.swift */; };
+		DFE4C6B423F2035200C6501D /* ResourceData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE4C6B323F2035200C6501D /* ResourceData.swift */; };
+		DFE4C6B623F2036900C6501D /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE4C6B523F2036900C6501D /* Resource.swift */; };
+		DFE4C6B923F20BEC00C6501D /* RegEx in Frameworks */ = {isa = PBXBuildFile; productRef = DFE4C6B823F20BEC00C6501D /* RegEx */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,7 +66,6 @@
 		DF5FD10323F08B53005E35C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DF5FD10523F08B54005E35C6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DF5FD10823F08B54005E35C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		DF5FD10A23F08B54005E35C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DF5FD10F23F08B54005E35C6 /* HydravionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HydravionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF5FD11323F08B54005E35C6 /* HydravionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HydravionTests.swift; sourceTree = "<group>"; };
 		DF5FD11523F08B54005E35C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -75,6 +83,14 @@
 		DF5FD13D23F0A3E0005E35C6 /* TwoFAViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoFAViewController.swift; sourceTree = "<group>"; };
 		DF5FD13F23F0AC8D005E35C6 /* VideoSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoSelectionViewController.swift; sourceTree = "<group>"; };
 		DF5FD14523F0BA34005E35C6 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		DFE4C6A723F2009C00C6501D /* CreatorInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorInfo.swift; sourceTree = "<group>"; };
+		DFE4C6A923F200DC00C6501D /* LiveStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveStream.swift; sourceTree = "<group>"; };
+		DFE4C6AB23F200F900C6501D /* Offline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Offline.swift; sourceTree = "<group>"; };
+		DFE4C6AD23F2010C00C6501D /* Cover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cover.swift; sourceTree = "<group>"; };
+		DFE4C6AF23F2012000C6501D /* Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
+		DFE4C6B123F2033F00C6501D /* LiveCDN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveCDN.swift; sourceTree = "<group>"; };
+		DFE4C6B323F2035200C6501D /* ResourceData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceData.swift; sourceTree = "<group>"; };
+		DFE4C6B523F2036900C6501D /* Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +98,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DFE4C6B923F20BEC00C6501D /* RegEx in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -125,26 +142,12 @@
 		DF5FD0FD23F08B53005E35C6 /* Hydravion */ = {
 			isa = PBXGroup;
 			children = (
+				DFE4C6A623F1F5A300C6501D /* ViewControllers */,
+				DFE4C6A523F1F58600C6501D /* Models */,
 				DF5FD0FE23F08B53005E35C6 /* AppDelegate.swift */,
 				DF5FD10223F08B53005E35C6 /* Main.storyboard */,
 				DF5FD10523F08B54005E35C6 /* Assets.xcassets */,
 				DF5FD10723F08B54005E35C6 /* LaunchScreen.storyboard */,
-				DF5FD10A23F08B54005E35C6 /* Info.plist */,
-				DF5FD12C23F08B91005E35C6 /* Subscription.swift */,
-				DF5FD12E23F08BB8005E35C6 /* Plan.swift */,
-				DF5FD13023F08BD5005E35C6 /* ChildImages.swift */,
-				DF5FD13223F08BF9005E35C6 /* Thumbnail.swift */,
-				DF5FD13523F08C3C005E35C6 /* Video.swift */,
-				DF0B29DE23F0E49C000C3721 /* Levels.swift */,
-				DF0B29E223F0E4D1000C3721 /* VideoInfo.swift */,
-				DF0B29E023F0E4B9000C3721 /* TimelineSprite.swift */,
-				DF5FD13B23F096A4005E35C6 /* NavigationController.swift */,
-				DF5FD13723F08C86005E35C6 /* LoginViewController.swift */,
-				DF5FD13D23F0A3E0005E35C6 /* TwoFAViewController.swift */,
-				DF5FD13923F08CA7005E35C6 /* MainViewController.swift */,
-				DF5FD14523F0BA34005E35C6 /* CollectionViewCell.swift */,
-				DF5FD13F23F0AC8D005E35C6 /* VideoSelectionViewController.swift */,
-				DF0B29E623F0EA80000C3721 /* VideoInfoViewController.swift */,
 			);
 			path = Hydravion;
 			sourceTree = "<group>";
@@ -167,6 +170,43 @@
 			path = HydravionUITests;
 			sourceTree = "<group>";
 		};
+		DFE4C6A523F1F58600C6501D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				DF5FD12C23F08B91005E35C6 /* Subscription.swift */,
+				DF5FD12E23F08BB8005E35C6 /* Plan.swift */,
+				DF5FD13023F08BD5005E35C6 /* ChildImages.swift */,
+				DF5FD13223F08BF9005E35C6 /* Thumbnail.swift */,
+				DF5FD13523F08C3C005E35C6 /* Video.swift */,
+				DF0B29DE23F0E49C000C3721 /* Levels.swift */,
+				DF0B29E223F0E4D1000C3721 /* VideoInfo.swift */,
+				DF0B29E023F0E4B9000C3721 /* TimelineSprite.swift */,
+				DFE4C6A723F2009C00C6501D /* CreatorInfo.swift */,
+				DFE4C6A923F200DC00C6501D /* LiveStream.swift */,
+				DFE4C6AB23F200F900C6501D /* Offline.swift */,
+				DFE4C6AD23F2010C00C6501D /* Cover.swift */,
+				DFE4C6AF23F2012000C6501D /* Icon.swift */,
+				DFE4C6B123F2033F00C6501D /* LiveCDN.swift */,
+				DFE4C6B323F2035200C6501D /* ResourceData.swift */,
+				DFE4C6B523F2036900C6501D /* Resource.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		DFE4C6A623F1F5A300C6501D /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				DF5FD13B23F096A4005E35C6 /* NavigationController.swift */,
+				DF5FD13723F08C86005E35C6 /* LoginViewController.swift */,
+				DF5FD13D23F0A3E0005E35C6 /* TwoFAViewController.swift */,
+				DF5FD13923F08CA7005E35C6 /* MainViewController.swift */,
+				DF5FD14523F0BA34005E35C6 /* CollectionViewCell.swift */,
+				DF5FD13F23F0AC8D005E35C6 /* VideoSelectionViewController.swift */,
+				DF0B29E623F0EA80000C3721 /* VideoInfoViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -183,6 +223,9 @@
 			dependencies = (
 			);
 			name = Hydravion;
+			packageProductDependencies = (
+				DFE4C6B823F20BEC00C6501D /* RegEx */,
+			);
 			productName = Hydravion;
 			productReference = DF5FD0FB23F08B53005E35C6 /* Hydravion.app */;
 			productType = "com.apple.product-type.application";
@@ -255,6 +298,9 @@
 				Base,
 			);
 			mainGroup = DF5FD0F223F08B52005E35C6;
+			packageReferences = (
+				DFE4C6B723F20BEC00C6501D /* XCRemoteSwiftPackageReference "RegEx" */,
+			);
 			productRefGroup = DF5FD0FC23F08B53005E35C6 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -305,11 +351,19 @@
 				DF0B29DF23F0E49C000C3721 /* Levels.swift in Sources */,
 				DF5FD13123F08BD5005E35C6 /* ChildImages.swift in Sources */,
 				DF5FD13823F08C86005E35C6 /* LoginViewController.swift in Sources */,
+				DFE4C6B223F2033F00C6501D /* LiveCDN.swift in Sources */,
 				DF5FD13A23F08CA7005E35C6 /* MainViewController.swift in Sources */,
+				DFE4C6B623F2036900C6501D /* Resource.swift in Sources */,
 				DF0B29E723F0EA80000C3721 /* VideoInfoViewController.swift in Sources */,
+				DFE4C6B023F2012000C6501D /* Icon.swift in Sources */,
 				DF5FD14023F0AC8D005E35C6 /* VideoSelectionViewController.swift in Sources */,
 				DF5FD13C23F096A4005E35C6 /* NavigationController.swift in Sources */,
+				DFE4C6B423F2035200C6501D /* ResourceData.swift in Sources */,
+				DFE4C6AC23F200F900C6501D /* Offline.swift in Sources */,
+				DFE4C6AA23F200DC00C6501D /* LiveStream.swift in Sources */,
+				DFE4C6AE23F2010C00C6501D /* Cover.swift in Sources */,
 				DF5FD13623F08C3C005E35C6 /* Video.swift in Sources */,
+				DFE4C6A823F2009C00C6501D /* CreatorInfo.swift in Sources */,
 				DF5FD13E23F0A3E0005E35C6 /* TwoFAViewController.swift in Sources */,
 				DF0B29E323F0E4D1000C3721 /* VideoInfo.swift in Sources */,
 				DF5FD0FF23F08B53005E35C6 /* AppDelegate.swift in Sources */,
@@ -638,6 +692,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		DFE4C6B723F20BEC00C6501D /* XCRemoteSwiftPackageReference "RegEx" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/eneko/RegEx";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.3.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		DFE4C6B823F20BEC00C6501D /* RegEx */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DFE4C6B723F20BEC00C6501D /* XCRemoteSwiftPackageReference "RegEx" */;
+			productName = RegEx;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = DF5FD0F323F08B52005E35C6 /* Project object */;
 }

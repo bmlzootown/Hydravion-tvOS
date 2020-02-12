@@ -19,8 +19,10 @@ class TwoFAViewController: UIViewController {
 
     @IBAction func doLogin(_ sender: UIButton) {
         if (!twoFACode.text!.isEmpty) {
+            // User gave 2FA code, let's see if it works
             getTwoFA()
         } else {
+            // User didn't provide 2FA code, so let's show incorrect code label
             incorrectCode.isHidden = false
         }
     }
@@ -30,6 +32,7 @@ class TwoFAViewController: UIViewController {
         let session = URLSession.shared
         request.httpMethod = "POST"
         
+        // Prepare 2FA token for sending to server
         let params = ["token": String(twoFACode.text!)] as Dictionary<String, String>
         
         request.httpBody = try? JSONSerialization.data(withJSONObject: params)
@@ -41,8 +44,10 @@ class TwoFAViewController: UIViewController {
                 if (httpResponse.statusCode == 200) {
                     DispatchQueue.main.async {
                         self.performSegue(withIdentifier: "loggedInSegue", sender: self)
+                        // 2FA was successful, so let's go back to NavigationView --> which will redirect us to MainView
                     }
                 } else {
+                    // 2FA failed, show incorrect code label; Note - User can always try again.
                     self.incorrectCode.isHidden = false
                 }
             }

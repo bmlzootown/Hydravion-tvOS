@@ -14,7 +14,10 @@ class VideoInfoViewController: UIViewController {
     @IBOutlet weak var videoTitle: UILabel!
     @IBOutlet weak var videoDescription: UITextView!
     var videoInfo:[VideoInfo] = []
+    var player: AVPlayer!
+    var playerViewController: AVPlayerViewController!
 
+    
     override func viewWillAppear(_ animated: Bool) {
         videoTitle.text = videoInfo[0].title
         videoDescription.text = videoInfo[0].description
@@ -52,9 +55,9 @@ class VideoInfoViewController: UIViewController {
     }
     
     func playVideo(url: URL) {
-        let player = AVPlayer(url: url)
-        let vc = AVPlayerViewController()
-        vc.player = player
-        self.present(vc, animated: true) { vc.player?.play() }
+        player = AVPlayer(url: url)
+        playerViewController = AVPlayerViewController()
+        playerViewController.player = player
+        self.present(playerViewController, animated: true) { self.playerViewController.player?.play() }
     }
 }

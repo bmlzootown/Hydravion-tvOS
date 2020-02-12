@@ -16,15 +16,36 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        //Hide failed label until we need it
         failed.isHidden = true
+        let cookieStorage = HTTPCookieStorage.shared
+        let url = URL(string: "https://www.floatplane.com")
+        let cookies = cookieStorage.cookies(for: url! as URL) ?? []
+        if (cookies.count > 0) {
+            DispatchQueue.main.async {
+                self.performSegue(withIdentifier: "loggedInSegue", sender: self)
+            }
+        }
+        
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap(gesture:)))
+        tapRecognizer.allowedPressTypes = [NSNumber(value: UIPress.PressType.menu.rawValue)]
+        self.view.addGestureRecognizer(tapRecognizer)
+    }
+    
+    @objc func handleTap(gesture: UITapGestureRecognizer){
+        if gesture.state == UIGestureRecognizer.State.ended {
+            let app = UIApplication.shared
+            app.perform(#selector(NSXPCConnection.suspend))
+        }
     }
 
     @IBAction func loginButton(_ sender: Any) {
         if (username.text! != "" && password.text! != "") {
-            print("[Hydravion] login button pressed")
+            //print("[Hydravion] login button pressed")
+            // User has provided username/pass, so let's try to login
             doLogin()
         } else {
+            // User didn't provide enough info, show failed label
             failed.isHidden = false
         }
     }
@@ -48,17 +69,14 @@ class LoginViewController: UIViewController {
             var err: NSError?
             let json = try? JSONSerialization.jsonObject(with: data!, options: .mutableLeaves) as? NSDictionary
             
-            // Did the JSONObjectWithData constructor return an error? If so, log the error to the console
             if(err != nil) {
                 print(err!.localizedDescription)
                 let jsonStr = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
                 print("Error could not parse JSON: '\(String(describing: jsonStr))'")
             }
             else {
-                // The JSONObjectWithData constructor didn't return an error. But, we should still
-                // check and make sure that json has a value using optional binding.
                 if let parseJSON = json {
-                    // Okay, the parsedJSON is here, let's get the value for 'success' out of it
+                    // Json parsed, double check to see if login was successful (should return needs2FA as either true or false if so)
                     let success = (parseJSON["needs2FA"] != nil)
                     if (success) {
                         if ((parseJSON["needs2FA"] as? Bool)!) {
@@ -67,13 +85,7 @@ class LoginViewController: UIViewController {
                                 self.performSegue(withIdentifier: "twoFASegue", sender: self)
                             }
                         } else {
-                            //let preferences = UserDefaults.standard
-                            //preferences.set(true, forKey: "loggedIn")
                             print("[Hydravion] LOGGED IN!")
-                            //let cookieName = "sails.sid"
-                            //if let cookie = HTTPCookieStorage.shared.cookies?.first(where: { $0.name == cookieName }) {
-                            //    print("\(cookieName): \(cookie.value)")
-                            //}
                             DispatchQueue.main.async {
                                 self.performSegue(withIdentifier: "loggedInSegue", sender: self)
                             }
@@ -84,7 +96,7 @@ class LoginViewController: UIViewController {
                     }
                 }
                 else {
-                    // Woa, okay the json object was nil, something went worng. Maybe the server isn't running?
+                    // Something went wrong
                     let jsonStr = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
                     print("Error could not parse JSON: \(String(describing: jsonStr))")
                     self.failed.isHidden = false
@@ -97,9 +109,7 @@ class LoginViewController: UIViewController {
     
     func storeCookies(_ cookies: [HTTPCookie], forURL url: URL) {
         let cookieStorage = HTTPCookieStorage.shared
-        cookieStorage.setCookies(cookies,
-                                 for: url,
-                                 mainDocumentURL: nil)
+        cookieStorage.setCookies(cookies, for: url, mainDocumentURL: nil)
     }
 
 }

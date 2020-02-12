@@ -12,27 +12,29 @@ class NavigationController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // UserDefaults let's us store things, sort of like Roku's registry
-        let preferences = UserDefaults.standard
-        
-        // Check to see if cookies are found for Floatplane, and if not, remove stored urlSession from UserDefaults
+        // Check to see if cookies are found for Floatplane
+        // If found, go to MainView. If not, go to LoginView
         let cookieStorage = HTTPCookieStorage.shared
         let url = URL(string: "https://www.floatplane.com")
         let cookies = cookieStorage.cookies(for: url! as URL) ?? []
         if (cookies.count < 1) {
-            print("[Hydravion] COOKIES NOT FOUND")
-            if (preferences.object(forKey: "loggedIn") != nil) {
-                preferences.removeObject(forKey: "loggedIn")
-            }
             DispatchQueue.main.async {
                 self.performSegue(withIdentifier: "loginSegue", sender: self)
+                print("[Hydravion] Not logged in...")
             }
         } else {
-            print("[Hydravion] COOKIES FOUND")
-            preferences.set(true, forKey: "loggedIn")
             DispatchQueue.main.async {
                 self.performSegue(withIdentifier: "alreadyLoggedInSegue", sender: self)
+                print("[Hydravion] Already logged in...")
             }
         }
     }
+    
+    /*@IBAction func returnToStepOne(segue: UIStoryboardSegue) {
+        //viewDidLoad()
+        let story = UIStoryboard(name: "Main", bundle:nil)
+        let vc = story.instantiateViewController(withIdentifier: "mainViewController") as! MainViewController
+        UIApplication.shared.windows.first?.rootViewController = vc
+        UIApplication.shared.windows.first?.makeKeyAndVisible()
+    }*/
 }

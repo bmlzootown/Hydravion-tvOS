@@ -10,24 +10,35 @@ import UIKit
 
 class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var logoutPopupButton: UIButton!
     var subscriptions:[Subscription] = []
     var videos:[Video] = []
     var selected:Int = 0
     var selectedGuid:String = ""
     var selectedCreator:String = ""
+    var menuPressRecognizer: UITapGestureRecognizer!
+    var topButtonFocusGuide:UIFocusGuide!
+    var tableViewFocusGuide:UIFocusGuide!
+    @IBOutlet weak var playButtonBackground: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //UIApplication.shared.windows.first{ $0.isKeyWindow }?.rootViewController = self
-        //UIApplication.shared.keyWindow?.rootViewController = self
         getSubscriptions()
         self.tableView.dataSource = self
         self.tableView.delegate = self
         
-        let tapRecognizer = UITapGestureRecognizer(target: self, action: Selector(("handleMenuPress:")))
-        let number = NSNumber(value: UIPress.PressType.menu.rawValue)
-        tapRecognizer.allowedPressTypes = [number]
-        view.addGestureRecognizer(tapRecognizer)
+        // Menu button recognizer setup
+        // Once we hit the MainView, we don't want the menu button bringing us back to the login screen
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap(gesture:)))
+        tapRecognizer.allowedPressTypes = [NSNumber(value: UIPress.PressType.menu.rawValue)]
+        self.view.addGestureRecognizer(tapRecognizer)
+        
+        let playRecognizer = UITapGestureRecognizer(target: self, action: #selector(handlePlay(gesture:)))
+        playRecognizer.allowedPressTypes = [NSNumber(value: UIPress.PressType.playPause.rawValue)]
+        self.view.addGestureRecognizer(playRecognizer)
+        
+        playButtonBackground.layer.cornerRadius = 8.0
+        playButtonBackground.clipsToBounds = true
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -38,8 +49,40 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
     
-    func handleMenuPress(recognizer: UITapGestureRecognizer) {
-        UIApplication.shared.perform(#selector(NSXPCConnection.suspend))
+    // Menu button recognizer function
+    @objc func handleTap(gesture: UITapGestureRecognizer){
+        if gesture.state == UIGestureRecognizer.State.ended {
+            let app = UIApplication.shared
+            app.perform(#selector(NSXPCConnection.suspend))
+        }
+    }
+    
+    @objc func handlePlay(gesture: UITapGestureRecognizer) {
+        if gesture.state == UIGestureRecognizer.State.ended {
+            let alert = UIAlertController(title: "Logout", message: "Logout of Hydravion?", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Delete Floatplane cookies"), style: .default, handler: { _ in
+                self.doLogout()
+            }))
+            alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "Go back to main view."), style: .default, handler: { _ in
+                //Cancelled
+            }))
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    func doLogout() {
+        let cookieStorage = HTTPCookieStorage.shared
+        let url = URL(string: "https://www.floatplane.com")
+        let cookies = cookieStorage.cookies(for: url! as URL) ?? []
+        if (cookies.count > 0) {
+            cookies.forEach { cookie in
+                cookieStorage.deleteCookie(cookie)
+            }
+            DispatchQueue.main.async {
+                print("[Hydravion] Logged out...")
+                self.performSegue(withIdentifier: "loginSegue", sender: self)
+            }
+        }
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
