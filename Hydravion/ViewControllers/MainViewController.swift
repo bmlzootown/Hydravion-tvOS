@@ -130,7 +130,14 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 do {
                     let decoder = JSONDecoder()
                     let subscriptions = try decoder.decode([Subscription].self, from: data!)
-                    self.subscriptions = subscriptions
+                    var trimmed: [Subscription] = []
+                    subscriptions.forEach { subscription in
+                        if !self.containsSub(trimmed: trimmed, id: subscription.creator!) {
+                            trimmed.append(subscription)
+                        }
+                    }
+                    self.subscriptions = trimmed
+                    print("[Hydravion] " + String(trimmed.count))
                     DispatchQueue.main.async {
                         print("Reloading tableView")
                         self.tableView.reloadData()
@@ -141,6 +148,17 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }
         }
         task.resume()
+    }
+    
+    func containsSub(trimmed: [Subscription], id: String) -> Bool {
+        var found = false
+        trimmed.forEach { trim in
+            if trim.creator == id {
+                found = true
+                return
+            }
+        }
+        return found
     }
     
     func getVideos() {
