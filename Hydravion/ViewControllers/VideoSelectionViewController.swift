@@ -18,9 +18,12 @@ class VideoSelectionViewController: UIViewController, UICollectionViewDelegateFl
     var videos:[Video] = []
     var videoInfo:[VideoInfo] = []
     var player:AVPlayer!
+    var playerItem:AVPlayerItem!
     var vc:AVPlayerViewController!
     @IBOutlet weak var playButtonView: UIView!
     fileprivate var myContext = 0
+    
+    private var playerItemContext = 0
     
     //350,200
     let defaultSize = CGSize(width: 350, height: 200)
@@ -41,10 +44,6 @@ class VideoSelectionViewController: UIViewController, UICollectionViewDelegateFl
         
         playButtonView.layer.cornerRadius = 8.0
         playButtonView.clipsToBounds = true
-    }
-    
-    deinit {
-        self.removeObserver()
     }
     
     //Live button clicked, ask if user wants to try and stream
@@ -163,49 +162,54 @@ class VideoSelectionViewController: UIViewController, UICollectionViewDelegateFl
         task.resume()
     }
     
+    func closeVideo() {
+        vc.dismiss(animated: true, completion: nil)
+    }
+    
     func playVideo(url: URL) {
-        player = AVPlayer(url: url)
+        playerItem = AVPlayerItem(url: url)
+        playerItem.addObserver(self, forKeyPath: #keyPath(AVPlayerItem.status), options: [.old, .new], context: &playerItemContext)
+        player = AVPlayer(playerItem: playerItem)
         vc = AVPlayerViewController()
         //self.addObserver()
         vc.player = player
         self.present(vc, animated: true) { self.vc.player?.play() }
     }
     
-    func addObserver() {
-        if let aPlayerItem = self.player {
-            NotificationCenter.default.addObserver(self,
-                selector: #selector(self.itemDidFailedPlayingToEnd(_:)),
-                name: NSNotification.Name.AVPlayerItemFailedToPlayToEndTime,
-                object: aPlayerItem)
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        // Only handle observations for the playerItemContext
+        guard context == &playerItemContext else {
+            super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
+            return
+        }
+        
+        if keyPath == #keyPath(AVPlayerItem.status) {
+            let status: AVPlayerItem.Status
             
-            NotificationCenter.default.addObserver(self,
-                selector: #selector(self.itemDidStall(_:)),
-                name: NSNotification.Name.AVPlayerItemPlaybackStalled,
-                object: aPlayerItem)
+            // Get the status change from the change dictionary
+            if let statusNumber = change?[.newKey] as? NSNumber {
+                status = AVPlayerItem.Status(rawValue: statusNumber.intValue)!
+            } else {
+                status = .unknown
+            }
+            
+            // Switch over the status
+            switch status {
+            case .readyToPlay:
+            // Player item is ready to play.
+                return
+            case .failed:
+            // Player item failed. See error.
+                print("[Hydravion] " + playerItem.error.debugDescription)
+                closeVideo()
+                return
+            case .unknown:
+                // Player item is not yet ready.
+                return
+            @unknown default:
+                return
+            }
         }
-        
-        if let aPlayer = self.player {
-            aPlayer.addObserver(self, forKeyPath: "rate", options: .new, context: &myContext)
-            aPlayer.addObserver(self, forKeyPath: "status", options: .new, context: &myContext)
-        }
-        
     }
     
-    func removeObserver() {
-        if let aPlayer = self.player {
-            //aPlayer.removeObserver(self,forKeyPath:"rate")
-            //aPlayer.removeObserver(self,forKeyPath:"status")
-            //NotificationCenter.default.removeObserver(self)
-        }
-    }
-    
-    @objc func itemDidFailedPlayingToEnd(_ notification: Notification) {
-        print("AVPlayer failed playing to the end stream")
-    }
-    
-    @objc func itemDidStall(_ notification: Notification) {
-        print("AVPlayer got stalled stream url")
-    }
-    
-
 }

@@ -15,8 +15,10 @@ class VideoInfoViewController: UIViewController {
     @IBOutlet weak var videoDescription: UITextView!
     var videoInfo:[VideoInfo] = []
     var player: AVPlayer!
+    var playerItem: AVPlayerItem!
     var playerViewController: AVPlayerViewController!
-
+    
+    private var playerItemContext = 0
     
     override func viewWillAppear(_ animated: Bool) {
         videoTitle.text = videoInfo[0].title
@@ -29,7 +31,7 @@ class VideoInfoViewController: UIViewController {
     }
 
     @IBAction func playButton(_ sender: UIButton) {
-        let urlString = "https://www.floatplane.com/api/video/url?guid=" + videoInfo[0].guid! + "&quality=1080"
+        let urlString = "https://www.floatplane.com/api/video/url?guid=" + videoInfo[0].guid! + "&quality=720"
         getVideoUrl(videoUrl: urlString)
         
         //playVideo(url: url)
@@ -54,10 +56,55 @@ class VideoInfoViewController: UIViewController {
         task.resume()
     }
     
+    func closeVideo() {
+        playerViewController.dismiss(animated: true, completion: nil)
+    }
+    
     func playVideo(url: URL) {
-        player = AVPlayer(url: url)
+        playerItem = AVPlayerItem(url: url)
+        playerItem.addObserver(self, forKeyPath: #keyPath(AVPlayerItem.status), options: [.old, .new], context: &playerItemContext)
+        player = AVPlayer(playerItem: playerItem)
         playerViewController = AVPlayerViewController()
         playerViewController.player = player
         self.present(playerViewController, animated: true) { self.playerViewController.player?.play() }
+    }
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        // Only handle observations for the playerItemContext
+        guard context == &playerItemContext else {
+            super.observeValue(forKeyPath: keyPath,
+                               of: object,
+                               change: change,
+                               context: context)
+            return
+        }
+        
+        if keyPath == #keyPath(AVPlayerItem.status) {
+            let status: AVPlayerItem.Status
+            
+            // Get the status change from the change dictionary
+            if let statusNumber = change?[.newKey] as? NSNumber {
+                status = AVPlayerItem.Status(rawValue: statusNumber.intValue)!
+            } else {
+                status = .unknown
+            }
+            
+            // Switch over the status
+            switch status {
+            case .readyToPlay:
+            // Player item is ready to play.
+                return
+            case .failed:
+            // Player item failed. See error.
+                print("[Hydravion] " + playerItem.error.debugDescription)
+                closeVideo()
+                return
+            case .unknown:
+                // Player item is not yet ready.
+                return
+            @unknown default:
+                return
+            }
+        }
     }
 }
