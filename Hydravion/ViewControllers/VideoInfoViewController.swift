@@ -23,6 +23,12 @@ class VideoInfoViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         videoTitle.text = videoInfo[0].title
         videoDescription.text = videoInfo[0].description
+        videoDescription.isUserInteractionEnabled = true
+        videoDescription.isScrollEnabled = true
+        videoDescription.isSelectable = true
+        videoDescription.showsVerticalScrollIndicator = true
+        videoDescription.bounces = true
+        videoDescription.panGestureRecognizer.allowedTouchTypes = [NSNumber(value:UITouch.TouchType.indirect.rawValue)]
         //print(videoInfo)
     }
     
@@ -31,7 +37,7 @@ class VideoInfoViewController: UIViewController {
     }
 
     @IBAction func playButton(_ sender: UIButton) {
-        let urlString = "https://www.floatplane.com/api/video/url?guid=" + videoInfo[0].guid! + "&quality=720"
+        let urlString = "https://www.floatplane.com/api/video/url?guid=" + videoInfo[0].guid! + "&quality=1080"
         getVideoUrl(videoUrl: urlString)
         
         //playVideo(url: url)
