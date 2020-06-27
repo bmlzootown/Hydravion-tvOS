@@ -15,7 +15,9 @@ class VideoSelectionViewController: UIViewController, UICollectionViewDelegateFl
     @IBOutlet weak var creator: UILabel!
     @IBOutlet weak var videoCollection: UICollectionView!
     var creatorName = String()
+    var creatorGUID = String()
     var videos:[Video] = []
+    var videoCount = 0
     var videoInfo:[VideoInfo] = []
     var player:AVPlayer!
     var playerItem:AVPlayerItem!
@@ -44,13 +46,14 @@ class VideoSelectionViewController: UIViewController, UICollectionViewDelegateFl
         
         playButtonView.layer.cornerRadius = 8.0
         playButtonView.clipsToBounds = true
+        videoCount = videos.count
     }
     
     //Live button clicked, ask if user wants to try and stream
     @objc func handlePlay(gesture: UITapGestureRecognizer) {
         let alert = UIAlertController(title: "Live Stream", message: "Attempt to play live stream?", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Attempt to play live stream."), style: .default, handler: { _ in
-            print(self.videos[0].creator!)
+            //print(self.videos[0].creator!)
             self.getLiveUrlStream(creatorGUID: self.videos[0].creator!)
             NSLog("The \"OK\" alert occured.")
         }))
@@ -68,7 +71,8 @@ class VideoSelectionViewController: UIViewController, UICollectionViewDelegateFl
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return videos.count
+        //return self.videos.count
+        return self.videoCount
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -80,6 +84,10 @@ class VideoSelectionViewController: UIViewController, UICollectionViewDelegateFl
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if (indexPath.row == videos.count - 1 ) {
+          //Load more data & reload your collection view
+            getVideos(guid: self.creatorGUID, after: videos.count)
+        }
         if let cell = videoCollection.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as? CollectionViewCell {
             let video = videos[indexPath.row]
             cell.configureCell(video: video)
@@ -125,6 +133,41 @@ class VideoSelectionViewController: UIViewController, UICollectionViewDelegateFl
                     }
                 }
             } catch { print(error) }
+        }
+        task.resume()
+    }
+    
+    func getVideos(guid: String, after: Int) {
+        print("[Hydravion] GETing videos...")
+        let session = URLSession.shared
+        let urlString = "https://www.floatplane.com/api/creator/videos?creatorGUID=" + guid + "&fetchAfter=" + String(after)
+        guard let url = URL(string: urlString) else { return }
+        let task = session.dataTask(with: url) { (data, response, error) in
+            guard let dataResponse = data,
+                error == nil else {
+                    print(error?.localizedDescription ?? "Response Error")
+                    return }
+            do{
+                let jsonResponse = try JSONSerialization.jsonObject(with:
+                    dataResponse, options: [])
+                //print(jsonResponse)
+                guard jsonResponse is [[String: Any]] else {
+                    return
+                }
+                do {
+                    let decoder = JSONDecoder()
+                    let videos = try decoder.decode([Video].self, from: data!)
+                    self.videos.append(contentsOf: videos)
+                    self.videoCount = after + 20
+                    
+                    let indexPaths = Array(after..<self.videoCount).map{IndexPath(item: $0, section: 0)}
+                    DispatchQueue.main.sync {
+                        self.videoCollection.insertItems(at: indexPaths)
+                    }
+                } catch { print(error) }
+            } catch let parsingError {
+                print("Error", parsingError)
+            }
         }
         task.resume()
     }

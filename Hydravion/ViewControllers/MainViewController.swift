@@ -46,6 +46,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let destination = segue.destination as? VideoSelectionViewController
             destination?.videos = videos
             destination?.creatorName = selectedCreator
+            destination?.creatorGUID = selectedGuid
         }
     }
     
@@ -68,6 +69,13 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }))
             self.present(alert, animated: true, completion: nil)
         }
+    }
+    
+    func doRelog() {
+        let alert = UIAlertController(title: "Login Expired", message: "Stored cookies expired, please login again!", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Relog"), style: .default, handler: { _ in
+            self.doLogout()
+        }))
     }
     
     func doLogout() {
@@ -120,6 +128,10 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 error == nil else {
                     print(error?.localizedDescription ?? "Response Error")
                     return }
+            let status = (response as! HTTPURLResponse).statusCode
+            if (status == 403) {
+                self.doRelog()
+            }
             do{
                 let jsonResponse = try JSONSerialization.jsonObject(with:
                     dataResponse, options: [])
@@ -137,7 +149,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
                         }
                     }
                     self.subscriptions = trimmed
-                    print("[Hydravion] " + String(trimmed.count))
+                    //print("[Hydravion] " + String(trimmed.count))
                     DispatchQueue.main.async {
                         print("Reloading tableView")
                         self.tableView.reloadData()
