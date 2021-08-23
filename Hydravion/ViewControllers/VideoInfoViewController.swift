@@ -34,6 +34,29 @@ class VideoInfoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let playRecognizer = UITapGestureRecognizer(target: self, action: #selector(handlePlay(gesture:)))
+        playRecognizer.allowedPressTypes = [NSNumber(value: UIPress.PressType.playPause.rawValue)]
+        self.view.addGestureRecognizer(playRecognizer)
+    }
+    
+    //Present user with stream quality options
+    @objc func handlePlay(gesture: UITapGestureRecognizer) {
+        let futureFeature = UIAlertController(title: "Uhoh!", message: "Selecting preferred resolution not currently supported. Currently defaults to 1080", preferredStyle: .alert)
+        futureFeature.addAction(UIAlertAction(title: NSLocalizedString("Okay", comment: ""), style: .default, handler: { _ in
+            NSLog("Resolution Selection --> Not currently implemented...")
+        }))
+        
+        let alert = UIAlertController(title: "Video Quality", message: "", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("1080", comment: ""), style: .default, handler: { _ in
+            NSLog("1080 selected")
+            self.present(futureFeature, animated: true, completion: nil)
+        }))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("720", comment: ""), style: .default, handler: { _ in
+            NSLog("720 selected")
+            self.present(futureFeature, animated: true, completion: nil)
+        }))
+        self.present(alert, animated: true, completion: nil)
     }
 
     @IBAction func playButton(_ sender: UIButton) {
@@ -52,6 +75,7 @@ class VideoInfoViewController: UIViewController {
                 if (httpResponse.statusCode == 200) {
                     var str = String(decoding: data!, as: UTF8.self)
                     str = str.replacingOccurrences(of: "\"", with: "")
+                    NSLog(str)
                     DispatchQueue.main.async {
                         let url = URL(string: str)
                         self.playVideo(url: url!)

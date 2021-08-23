@@ -18,7 +18,8 @@ class CollectionViewCell: UICollectionViewCell {
         if let title = video.title {
             videoTitle.text = title
         }
-        if let thumbnail = video.thumbnail?.childImages![0].path {
+        //if let thumbnail = video.thumbnail?.childImages![0].path {
+        if let thumbnail = video.thumbnail?.path {
             let url = URL(string: thumbnail)!
             DispatchQueue.main.async {
                 let data = NSData(contentsOf: url)
